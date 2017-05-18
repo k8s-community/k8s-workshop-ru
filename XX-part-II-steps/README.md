@@ -1,5 +1,5 @@
 
-# k8s-workshop-ru: Part II - Steps 1 - X
+# k8s-workshop-ru: Part II - Steps 1 - 3
 
 Мастер-класс по написанию микросервисов на Go с автоматическими 
 релизами в Kubernetes
@@ -58,7 +58,7 @@
   
   Также есть еще много компонентов, знакомство с которыми у нас состоится позже
 
-## Step 2 - Знакомство с шаблонами манифестов 
+## Step 2 - Знакомство с шаблонами charts 
 
 - Каждый компонет Kubernetes может быть описан манифестом в формате YAML или JSON
   ```sh
@@ -127,7 +127,10 @@
   ...
   ```
 
-  Более подробную информацию по шаблонам (charts) Helm можно посмотреть [здесь](https://github.com/kubernetes/helm/blob/master/docs/index.md)
+  Более подробную информацию по шаблонам Helm можно посмотреть [здесь](https://github.com/kubernetes/helm/blob/master/docs/index.md)
+
+## Step 3 - Создание собственного charts для сервиса в Kubernetes
+
 
 ## Авторы
 
