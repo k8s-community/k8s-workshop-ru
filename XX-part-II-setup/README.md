@@ -165,12 +165,12 @@
 
   - OSX и Linux
     ```sh
-    kubectl config set-cluster master-class --certificate-authority=$HOME/kube-ca.pem
+    kubectl config set-cluster master-class --certificate-authority=$HOME/kube-ca.crt
     ```
 
   - Windows
     ```sh
-    kubectl config set-cluster master-class --certificate-authority=%USERPROFILE%/kube-ca.pem
+    kubectl config set-cluster master-class --certificate-authority=%USERPROFILE%/kube-ca.crt
     ```
 
 ## Авторы
