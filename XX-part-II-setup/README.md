@@ -21,14 +21,20 @@
 
   - OS X
 	```sh
-	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v.1.5.6/bin/darwin/amd64/kubectl
-	chmod +x /usr/local/bin//kubectl
+	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/darwin/amd64/kubectl
+	chmod +x /usr/local/bin/kubectl
 	```
+	или
+	```sh
+	brew install kubectl
+	```
+
   - Linux
 	```sh
 	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl
 	chmod +x /usr/local/bin//kubectl
 	```
+
   - Windows
 	```sh
 	curl -LOo %USERPROFILE% https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
@@ -42,6 +48,11 @@
 	tar -xzf ./helm-v2.3.1-darwin-amd64.tar.gz 
 	cp darwin-amd64/helm /usr/local/bin/
 	```
+	или
+	```sh
+	brew install kubernetes-helm
+	```
+
   - Linux
 	```sh
 	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-linux-amd64.tar.gz
@@ -52,7 +63,6 @@
   - Windows
 	```sh
 	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-windows-amd64.zip
-	tar -xzf ./helm-v2.3.1-windows-amd64.tar.gz 
 	cp windows-amd64/helm %USERPROFILE%
 	```
 
@@ -82,6 +92,7 @@
 	    token: XXXXXXX
 	EOF
 	```
+
   - Windows. Создайте файл настройки в домашнем каталоге
     ```sh
     mkdir %USERPROFILE%/.kube
@@ -150,7 +161,7 @@
     ```
     (используйте любой редактор для внесения изменений в файл, например notepad)
 
-- Зрегистрируйте сертификат в настройках
+- Зарегистрируйте сертификат в настройках
 
   - OSX и Linux
     ```sh
@@ -159,7 +170,7 @@
 
   - Windows
     ```sh
-    kubectl config set-cluster master-class --certificate-authority=%USERPROFILE%//kube-ca.pem
+    kubectl config set-cluster master-class --certificate-authority=%USERPROFILE%/kube-ca.pem
     ```
 
 ## Авторы
