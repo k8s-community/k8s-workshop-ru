@@ -20,20 +20,20 @@
 - В терминале скачайте утилиту kubectl и скопируйте её в место, где у вас расположены исполняемые файлы:
 
   - OS X
-```sh
-curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v.1.5.6/bin/darwin/amd64/kubectl
-chmod +x /usr/local/bin//kubectl
-```
+	```sh
+	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v.1.5.6/bin/darwin/amd64/kubectl
+	chmod +x /usr/local/bin//kubectl
+	```
   - Linux
-```sh
-curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl
-chmod +x /usr/local/bin//kubectl
-```
+	```sh
+	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl
+	chmod +x /usr/local/bin//kubectl
+	```
 
   - Windows
-```sh
-curl -LOo %USERPROFILE% https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
-```
+	```sh
+	curl -LOo %USERPROFILE% https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
+	```
 
 ## Авторы
 
