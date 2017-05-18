@@ -55,6 +55,79 @@
   oauth-proxy-v0    10.254.30.135   <none>        80/TCP            6h        app=oauth-proxy-default
   user-manager-v0   10.254.240.50   <none>        80/TCP            12m       app=user-manager-default
   ```
+  
+  Также есть еще много компонентов, знакомство с которыми у нас состоится позже
+
+## Step 2 - Знакомство с шаблонами манифестов 
+
+- Каждый компонет Kubernetes может быть описан манифестом в формате YAML или JSON
+  ```sh
+  kubectl get svc/charts-v0 -o yaml
+  ```
+
+  Сокращённый вариант выдачи:
+  ```sh
+  apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: charts-default
+    name: charts-v0
+    namespace: default
+  spec:
+    selector:
+      app: charts-default
+    ports:
+    - name: charts
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    type: ClusterIP
+  ```
+
+  Как выглядит шаблон для этого сервиса:
+  ```sh
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: {{ template "app.fullname" . }}
+    labels:
+      app: {{ template "fullname" . }}
+  spec:
+    selector:
+      app: {{ template "fullname" . }}
+    ports:
+    - port: {{ .Values.service.externalPort }}
+      targetPort: {{ .Values.service.internalPort }}
+      protocol: TCP
+      name: {{ .Values.service.name }}
+    type: "{{ .Values.service.type }}"
+  ```
+
+  Откуда берутся значения в шаблоне:
+  ```sh
+  ...
+  service:
+    ## App container name
+    ##
+    name: charts
+  
+    ## Service Type
+    ## For minikube, set this to NodePort, elsewhere use ClusterIP
+    ##
+    type: ClusterIP
+
+    ## App service port
+    ##
+    externalPort: 80
+
+    ## Pod exposed port
+    ##
+    internalPort: 8080
+  ...
+  ```
+
+  Более подробную информацию по шаблонам (charts) Helm можно посмотреть [здесь](https://github.com/kubernetes/helm/blob/master/docs/index.md)
 
 ## Авторы
 
