@@ -60,13 +60,17 @@
 
 ## Step 2 - Знакомство с шаблонами charts 
 
+- Копирование подготовленного шаблона для типичного сервиса
+  - Делаем fork репозитория [mycharts](https://github.com/k8s-community/mycharts) на Github
+  - Для первого релиза сервиса никаких изменений в данном репозитории делать не нужно
+
 - Каждый компонент Kubernetes может быть описан манифестом в формате YAML или JSON
   ```sh
   kubectl get svc/charts-v0 -o yaml
   ```
 
-  Сокращённый вариант выдачи:
-  ```sh
+  Сокращённый вариант выдачи для service:
+  ```yaml
   apiVersion: v1
   kind: Service
   metadata:
@@ -85,8 +89,8 @@
     type: ClusterIP
   ```
 
-  Как выглядит шаблон для этого сервиса:
-  ```sh
+  Как выглядит шаблон для этого сервиса (полная версия в `templates/service.yaml` ):
+  ```yaml
   apiVersion: v1
   kind: Service
   metadata:
@@ -104,8 +108,8 @@
     type: "{{ .Values.service.type }}"
   ```
 
-  Откуда берутся значения в шаблоне:
-  ```sh
+  Откуда берутся значения в шаблоне (полная версия в `values.yaml`):
+  ```yaml
   ...
   service:
     ## App container name
@@ -127,16 +131,120 @@
   ...
   ```
 
+- Как правило в каждом модуле charts есть шаблон для Deployment или Replication Controller
+  ```yaml
+  apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: charts-v0
+    namespace: default
+    labels:
+      app: charts-default
+  spec:
+    minReadySeconds: 10
+    replicas: 3
+    revisionHistoryLimit: 5
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 25%
+      spec:
+        imagePullSecrets:
+        - name: registry-pull-secret
+        containers:
+        - name: charts
+          image: registry.k8s.community/charts:0.1.7
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+          ports:
+          - containerPort: 8080
+          - containerPort: 8082
+          resources:
+            limits:
+              cpu: 50m
+              memory: 48Mi
+            requests:
+              cpu: 50m
+              memory: 48Mi
+  ```
+
+- Довольно часто, для сервисов, которые имеют публичный доступ или REST интерфейс используется шаблон Ingress
+  ```yaml
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    name: charts-v0
+    namespace: default
+    annotations:
+      ingress.kubernetes.io/rewrite-target: /
+    labels:
+      app: charts-default
+  spec:
+    rules:
+    - host: services.k8s.community
+      http:
+        paths:
+        - path: /charts
+          backend:
+            serviceName: charts-v0
+            servicePort: 80
+    tls:
+    - hosts:
+      - services.k8s.community
+      secretName: tls-secret
+  ```
+
+- Также для хранения конфигураций применяются ConfigMap
+  ```yaml
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: nginx-conf
+    namespace: kube-system
+  data:
+    body-size: "0"
+  ```
+
+- Если нам нужно организовать доступ к сервису или базе, находящимися вне Kubernetes, используется External Service
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: galera
+    namespace: default
+  spec:
+    externalName: mariadb.database.host
+    ports:
+    - port: 3306
+      protocol: TCP
+      targetPort: 3306
+    type: ExternalName
+  ```
+
   Более подробную информацию по шаблонам Helm можно посмотреть [здесь](https://github.com/kubernetes/helm/blob/master/docs/index.md)
 
-## Step 3 - Создание собственного charts для сервиса в Kubernetes
-
-- Копирование подготовленного шаблона для типичного сервиса
-  - Делаем fork репозитория [mycharts](https://github.com/k8s-community/mycharts) на Github
-  - Для первого релиза сервиса никаких более изменений в данном репозитории делать не нужно
+## Step 3 - Создание собственного сервиса в Kubernetes
 
 - Копирование подготовленного типичного сервиса ( или используем сервис, который был реализован в первой части )
   - Делаем fork репозитория [myapp](https://github.com/k8s-community/mycharts) на Github
+
+- Кроме самого сервиса, основные компоненты, влияющие на сборку:
+  - Dockerfile, в нашем примере минимизирован до FROM scratch
+  - Makefile, несёт на себе основную нагрузку в выполнении этапов CI/CD
+
+- Более подробно остановимся на командах Makefile, которые не были расмотрены в первой части
+  - `make push` - выполняет сборку `docker image` и доставляет его в `docker registry`
+  - `make deploy` - выполняет доставку сервиса в среду Kubernetes, а именно работу с пакетным менеджером Helm
 
 ## Step 4 - Интеграция с Kubernetes и Github
 
