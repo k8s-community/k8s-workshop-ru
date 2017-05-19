@@ -195,12 +195,3 @@
     ```sh
     kubectl config set-cluster master-class --certificate-authority=%USERPROFILE%/kube-ca.crt
     ```
-
-## Авторы
-
-Список авторов (отсортирован по фамилиям):
-
-- [Елена Граховац](https://github.com/rumyantseva)
-- [Игорь Должиков](https://github.com/takama)
-- [Владислав Савельев](https://github.com/vsaveliev)
-- [Станислав Щербаков](https://github.com/STASiAN)

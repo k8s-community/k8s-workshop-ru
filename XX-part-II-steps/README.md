@@ -130,13 +130,3 @@
   Более подробную информацию по шаблонам Helm можно посмотреть [здесь](https://github.com/kubernetes/helm/blob/master/docs/index.md)
 
 ## Step 3 - Создание собственного charts для сервиса в Kubernetes
-
-
-## Авторы
-
-Список авторов (отсортирован по фамилиям):
-
-- [Елена Граховац](https://github.com/rumyantseva)
-- [Игорь Должиков](https://github.com/takama)
-- [Владислав Савельев](https://github.com/vsaveliev)
-- [Станислав Щербаков](https://github.com/STASiAN)
