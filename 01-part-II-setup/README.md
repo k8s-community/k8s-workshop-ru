@@ -11,7 +11,7 @@
 - git
 - Github персональная учетная запись
 - консольная утилита для просмотра и управления ресурсами Kubernetes (kubectl).
-- конслоьная утилита для просмотра и управления релизами и репозиториями Helm.
+- консольная утилита для просмотра и управления релизами и репозиториями Helm.
 
 Если вы принимали участие в первой части мастер-класса, то у вас уже должен быть подготовлен терминал SSH, настроен git и вы уже используете Github account.
 
@@ -27,7 +27,7 @@
 
   - OS X
 	```sh
-	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/darwin/amd64/kubectl
+	curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/darwin/amd64/kubectl
 	chmod +x /usr/local/bin/kubectl
 	```
 	или
@@ -37,8 +37,8 @@
 
   - Linux
 	```sh
-	curl -LOo /usr/local/bin/ https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl
-	chmod +x /usr/local/bin//kubectl
+	curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl
+	chmod +x /usr/local/bin/kubectl
 	```
 
   - Windows
