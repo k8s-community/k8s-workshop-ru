@@ -294,3 +294,23 @@
 ## Step 7 - Проверка работоспособности сервиса
 
 - После окончания процесса деплоймента ваш сервис будет доступен по адресу `https://services.k8s.community/user_name/myapp` (`user_name` необходимо заменить на имя аккаунта Github)
+
+- Проверяем наличие нашего сервиса в Pods в 3 экземплярах
+  ```sh
+  kubectl get -n user-name pods
+  ```
+
+- Проверяем наличие Deployment
+  ```sh
+  kubectl get -n user-name deploy
+  ```
+
+- Проверяем наличие Services
+  ```sh
+  kubectl get -n user-name svc -o wide
+  ```
+
+- Каким образом наш сервис представлен во внешний мир?
+  ```sh
+  kubectl get -n user-name ing - o yaml
+  ```
