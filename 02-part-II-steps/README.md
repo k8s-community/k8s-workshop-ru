@@ -1,5 +1,5 @@
 
-# k8s-workshop-ru: Part II - Steps 1 - X
+# k8s-workshop-ru: Part II - Steps 1 - 7
 
 Мастер-класс по написанию микросервисов на Go с автоматическими 
 релизами в Kubernetes
@@ -25,6 +25,9 @@
   - Используем ссылку снизу `k8s_integration` для выбора репозитория на котором будем активирован CI/CD 
 
 ## Step 3 - Знакомство с Kubernetes
+
+- Настройка среды
+  - Настраиваемся для получения доступа по [инструкции](https://github.com/k8s-community/k8s-workshop-ru/tree/master/01-part-II-setup)
 
 - Основной компонент с исполняемыми сервисами в Kubernetes - Pod
   ```sh
