@@ -307,7 +307,7 @@
     ```
 
 - Регистрируем наш репозиторий для Charts в Github Pages
-  - Переходим в раздел Settings -> Github Pages
+  - Переходим в Github в репозитории `mycharts` -> Settings -> Github Pages
   - Выбираем master branch для нашей страницы Charts и сохраняем
   - Переходим в браузере на страницу https://`user_name`.github.io/mycharts (`user_name` - имя вашего аккаунта Github)
   - Проверяем по содержимому страницы, что всё настроено правильно
