@@ -52,7 +52,7 @@
   kubectl get -n k8s-community pods
   ```
 
-- Pods создаются посредством Deployment, Replication Controller или просто статическим манифестом.
+- Pods создаются посредством специальных компонент, таких как Deployment, DaemonSet и т.д. или просто статическим манифестом.
   ```sh
   kubectl get deploy
   ```
