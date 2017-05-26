@@ -52,7 +52,7 @@
   kubectl get -n k8s-community pods
   ```
 
-- Pods создаются посредством Deployment, Replication Controller или просто статическим манифестом.
+- Pods создаются посредством специальных компонент, таких как Deployment, DaemonSet и т.д. или просто статическим манифестом.
   ```sh
   kubectl get deploy
   ```
@@ -271,12 +271,16 @@
     ```sh
     git checkout develop
     ```
+  - Необходимо заменить значение `k8s-community` внутри `Chart.yaml` в `sources:` на имя вашего аккаунта Github
+  - Также необходимо заменить значение `k8s-community` внутри `prepare.sh` на имя вашего аккаунта Github
+  - Сохраним изменения в бранче `develop` (В реальных системах обычно требуется Pull Request и Review ваших изменений)
+    ```sh
+    git commit -a -m "Setup personal account"
+    ```
   - Cоздаём новый релиз
     ```sh
     git checkout -b release/0.0.6
     ```
-  - Необходимо заменить значение `k8s-community` внутри `Chart.yaml` в `sources:` на имя вашего аккаунта Github
-  - Также необходимо заменить значение `k8s-community` внутри `prepare.sh` на имя вашего аккаунта Github
   - Далее меняем версию наших шаблонов в файле `Charts.yaml`
   - Выполняем комманду для создания индекса в корневом каталоге Charts
     ```sh
@@ -290,20 +294,20 @@
     ```sh
     git tag -a 0.0.6 -m "Version 0.0.6"
     ```
-  - Релизим наши изменения в `develop` и `master` (В реальных системах обычно требуется Pull Request и Review ваших измнений)
+  - Релизим наши изменения в `develop` и `master` (В реальных системах обычно требуется Pull Request и Review ваших изменений)
     ```sh
     git checkout develop
     git merge --no-ff release/0.0.6
     git checkout master
     git merge --no-ff release/0.0.6
     ```
-  - Сохраняем изменения в удалённом репозитории
+  - Сохраняем изменения в репозитории на Github
     ```sh
     git push -u --tags origin master
     ```
 
 - Регистрируем наш репозиторий для Charts в Github Pages
-  - Переходим в раздел Settings -> Github Pages
+  - Переходим в Github в репозитории `mycharts` -> Settings -> Github Pages
   - Выбираем master branch для нашей страницы Charts и сохраняем
   - Переходим в браузере на страницу https://`user_name`.github.io/mycharts (`user_name` - имя вашего аккаунта Github)
   - Проверяем по содержимому страницы, что всё настроено правильно
@@ -365,20 +369,20 @@
 
 - Проверяем наличие нашего сервиса в Pods в 3 экземплярах
   ```sh
-  kubectl get -n user-name pods
+  kubectl get -n user_name pods
   ```
 
 - Проверяем наличие Deployment
   ```sh
-  kubectl get -n user-name deploy
+  kubectl get -n user_name deploy
   ```
 
 - Проверяем наличие Services
   ```sh
-  kubectl get -n user-name svc -o wide
+  kubectl get -n user_name svc -o wide
   ```
 
 - Каким образом наш сервис представлен во внешний мир?
   ```sh
-  kubectl get -n user-name ing - o yaml
+  kubectl get -n user_name ing -o yaml
   ```
