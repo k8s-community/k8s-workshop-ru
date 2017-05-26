@@ -325,9 +325,9 @@
   git checkout develop
   ```
 
-- Необходимо заменить значение `USERSPACE` внутри `Makefile` вашего сервиса `myapp` на имя аккаунта Github
-
 - В `myapp.go` делаем изменения в импорте `user_name` согласно аккаунту Github `"github.com/user_name/myapp/version"`
+
+- Необходимо заменить значение `USERSPACE` внутри `Makefile` вашего сервиса `myapp` на имя аккаунта Github
 
 - Сохраним изменения в бранче `develop` (В реальных системах обычно требуется Pull Request и Review ваших измнений)
   ```sh
