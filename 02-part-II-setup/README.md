@@ -42,7 +42,7 @@
 
   - Windows
 	```sh
-	curl -LOo %USERPROFILE% https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
+	curl -Lo %USERPROFILE%/kubectl.exe https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
 	```
 
 ## Настройка консольных утилит
