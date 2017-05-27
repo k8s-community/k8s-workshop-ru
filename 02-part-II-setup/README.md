@@ -45,6 +45,32 @@
 	curl -Lo %USERPROFILE%/kubectl.exe https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
 	```
 
+- Скачайте консольную утилиту Helm
+
+  - OS X
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-darwin-amd64.tar.gz
+	tar -xzf ./helm-v2.3.1-darwin-amd64.tar.gz 
+	cp darwin-amd64/helm /usr/local/bin/
+	```
+	или
+	```sh
+	brew install kubernetes-helm
+	```
+
+  - Linux
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-linux-amd64.tar.gz
+	tar -xzf ./helm-v2.3.1-linux-amd64.tar.gz 
+	cp linux-amd64/helm /usr/local/bin/
+	```
+
+  - Windows
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-windows-amd64.zip
+	cp windows-amd64/helm %USERPROFILE%
+	```
+
 ## Настройка консольных утилит
 
 - Настройка прав доступа к кластеру Kubernetes
@@ -96,6 +122,13 @@
 	  user:
 	    token: XXXXXXX
     ```
+
+## Инициализация клиента Helm
+
+- Настройка и проверка параметров конфигурации для клиента
+  ```sh
+  helm init --client-only
+  ```
 
 ## Проверка работоспособности настроек
 
