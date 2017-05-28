@@ -10,15 +10,14 @@
 - любой терминал SSH
 - git
 - Github персональная учетная запись
-- консольная утилита для просмотра и управления ресурсами Kubernetes (kubectl).
+- консольная утилита для просмотра и управления ресурсами Kubernetes (kubectl)
+- консольная утилита пакетного менеджера Helm
 
 Если вы принимали участие в первой части мастер-класса, то у вас уже должен быть подготовлен терминал SSH, настроен git и вы уже используете Github account.
 
-## Интеграция с Kubernetes и Github
+## Интерактивный клиент для Kubernetes
 
-- Интеграция с Kubernetes через Github
-  - Активируем интеграцию по ссылке [https://k8s.community](https://k8s.community)
-  - После активации на Github, на странице [https://k8s.community](https://k8s.community) будет отображена информация о вашей успешной регистрации в среде Kubernetes и конфигурация для настройки доступа.
+- Любители пользоваться интеракивными программами, могут скачать [Kubernetic](https://kubernetic.com)
 
 ## Установка консольных утилит
 
@@ -43,6 +42,32 @@
   - Windows
 	```sh
 	curl -Lo %USERPROFILE%/kubectl.exe https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/windows/amd64/kubectl.exe
+	```
+
+- Скачайте консольную утилиту Helm
+
+  - OS X
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-darwin-amd64.tar.gz
+	tar -xzf ./helm-v2.3.1-darwin-amd64.tar.gz 
+	cp darwin-amd64/helm /usr/local/bin/
+	```
+	или
+	```sh
+	brew install kubernetes-helm
+	```
+
+  - Linux
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-linux-amd64.tar.gz
+	tar -xzf ./helm-v2.3.1-linux-amd64.tar.gz 
+	cp linux-amd64/helm /usr/local/bin/
+	```
+
+  - Windows
+	```sh
+	curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.3.1-windows-amd64.zip
+	cp windows-amd64/helm %USERPROFILE%
 	```
 
 ## Настройка консольных утилит
@@ -96,6 +121,13 @@
 	  user:
 	    token: XXXXXXX
     ```
+
+## Инициализация клиента Helm
+
+- Настройка и проверка параметров конфигурации для клиента
+  ```sh
+  helm init --client-only
+  ```
 
 ## Проверка работоспособности настроек
 
